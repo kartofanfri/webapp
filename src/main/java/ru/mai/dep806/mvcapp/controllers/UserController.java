@@ -10,7 +10,9 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 import ru.mai.dep806.mvcapp.dao.MockUserDao;
 import ru.mai.dep806.mvcapp.model.User;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Контроллер для работы с пользователями.
@@ -46,7 +48,8 @@ public class UserController {
                              ModelMap model) {
         User newUser = new User(login,name,email,new Date(),active);
         userDao.saveUser(newUser);
-        return "WEB-INF/jsp/users.jsp";
+        model.addAttribute("user", newUser);
+        return "WEB-INF/jsp/result.jsp";
     }
 
 }
