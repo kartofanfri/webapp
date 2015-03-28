@@ -52,16 +52,17 @@ public class UserController {
         return "WEB-INF/jsp/addEditUser.jsp";
     }
 
-    @RequestMapping(value = "/editUser.html",headers="content-type=*", method = RequestMethod.POST)
-    public String editUser(@RequestHeader("Accept-Encoding") String userAgent,
+    @RequestMapping(value = "/editUser.html", headers="content-type=*")
+    public String editUser(@RequestParam("id") String id,
                            @RequestParam("login") String login,
                           @RequestParam("name") String name,
                           @RequestParam("email") String email,
                           @RequestParam("active") Boolean active,
                           ModelMap model) {
-        userDao.findUserById(0l).changeUser(login, name, email, new Date(), active);
-        model.addAttribute("user", userDao.findUserById(0l));
-        System.out.println(userAgent);
+        Long parseId = Long.parseLong(id.split(",")[0]);
+        userDao.findUserById(parseId).changeUser(login, name, email, new Date(), active);
+        model.addAttribute("user", userDao.findUserById(parseId));
+
         return "WEB-INF/jsp/result.jsp";
     }
 
