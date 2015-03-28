@@ -9,7 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import ru.mai.dep806.mvcapp.dao.MockUserDao;
 import ru.mai.dep806.mvcapp.model.User;
-//import ru.mai.dep806.mvcapp.dao.MockUserDao;
+
+import java.util.Date;
 
 /**
  * Контроллер для работы с пользователями.
@@ -37,15 +38,15 @@ public class UserController {
         return "WEB-INF/jsp/addEditUser.jsp";
     }
 
- /*   @RequestMapping(value = "/addUser.html", method = RequestMethod.POST)
-    public String addStudent(User user,ModelMap model) {
-        model.addAttribute("login", user.getLogin());
-        model.addAttribute("name", user.getName());
-        model.addAttribute("email", user.getEmail());
-        model.addAttribute("birthDate", user.getBirthDate());
-        model.addAttribute("active", user.getActive());
-        User newUser = new User(user.getLogin(),user.getName(),user.getEmail(),user.getBirthDate(),user.getActive());
+    @RequestMapping(value = "/addUser.html", method = RequestMethod.POST)
+    public String addStudent(@RequestParam("login") String login,
+                             @RequestParam("name") String name,
+                             @RequestParam("email") String email,
+                             @RequestParam("active") Boolean active,
+                             ModelMap model) {
+        User newUser = new User(login,name,email,new Date(),active);
         userDao.saveUser(newUser);
         return "WEB-INF/jsp/users.jsp";
-    }*/
+    }
+
 }
