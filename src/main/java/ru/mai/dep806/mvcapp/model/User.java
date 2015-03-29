@@ -25,6 +25,14 @@ public class User {
         this.active = active;
     }
 
+    public void changeUser(String login, String name, String email, Date birthDate, Boolean active){
+        this.login = login;
+        this.name = name;
+        this.email = email;
+        this.birthDate = birthDate;
+        this.active = active;
+    }
+
     public Long getId() {
         return id;
     }
