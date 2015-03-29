@@ -1,12 +1,13 @@
 package ru.mai.dep806.mvcapp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by 111 on 29.03.2015.
  */
 public class ToDoList {
-    List<String> list;
+    List<String> list = new ArrayList<String>();
 
     public ToDoList(List<String> list) {
         this.list = list;
