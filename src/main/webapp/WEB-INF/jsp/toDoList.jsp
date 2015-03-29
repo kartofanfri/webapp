@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
@@ -11,34 +12,34 @@
 </head>
 <body>
     <h1>My ToDo List</h1>
-    <form:form method="POST">
-        <form id="mainForm" method="POST">
-            <form:input path="email"/>
-            <form:input id="bfnl" path="id" value="Title for new List"/>
-            <input type="text" id="bfnl" value="Title for new List">
-            <input type="submit" id="bfnl" value="New List">
-        </form>
+
+    <form:form method="POST" action="todo.html">
+        <input type="text" name="listTitle" value="Title for new List">
+        <input type="submit" value="New List"/>
     </form:form>
+
     <div id = "mainDiv">
 
        <c:forEach items="${lists}" var="list" varStatus="outerLoop">
-           <form:form method="POST">
-               <form id = "listNum${outerLoop.index}">
+           <form:form method="POST" action="todo.html">
                    <div class="list">
-                        <h1>Title</h1>
+                        <input type="hidden" name="ListNum" value=${outerLoop.index}${loop.index} />
+
+                        <h1>${titles[outerLoop.index]}</h1>
                         <c:forEach items="${list}" var="item" varStatus="loop">
 
                         <div class="itemList" class="buttonBlock">
-                            <p id="itemNum${outerLoop.index}${loop.index}">${loop.index+1}) ${item}</p>
-                            <div>
-                            <input type="submit" class="addChItem" value="Del">
-                            <input type="submit" class="addChItem" value="Ch">
-                            </div>
+                            <input type="hidden" name="itemNum" value=${loop.index} />
+                            <p>${loop.index+1}) ${item}</p>
+                            <input type="submit" name="chDel" class="addChItem" value="Del">
+                            <input type="submit" name="chDel" class="addChItem" value="Ch">
                         </div>
 
                         </c:forEach>
+
+                        <input type="text" class="newListTextBox" name="newListItem" value="New Item">
+                        <input type="submit" class="addChItem" value="Add Item">
                    </div>
-               </form>
            </form:form>
        </c:forEach>
 

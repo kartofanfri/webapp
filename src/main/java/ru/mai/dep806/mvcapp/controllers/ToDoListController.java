@@ -20,20 +20,60 @@ public class ToDoListController {
 
     @RequestMapping(value = {"/todo.html", "/index.html", "/"})
     public String ShowToDoLists(Model model) {
-
-
-
         model.addAttribute("lists", toDoListDao.getToDoLists());
+        model.addAttribute("titles", toDoListDao.getTitles());
         ArrayList<ArrayList<String>> fromDaoList = toDoListDao.getToDoLists();
         return PathJsp + "toDoList.jsp";
     }
 
-    @RequestMapping(value = {"/todo.html", "/index.html", "/"}, method = RequestMethod.POST)
-    public String EditToDoLists(@RequestParam("id") String login,Model model) {
+    @RequestMapping(value = {"/todo.html", "/index.html", "/"}, method = RequestMethod.POST, params={"listTitle"})
+    public String EditTitle(@RequestParam("listTitle") String listTitle,
+                                Model model) {
 
+        System.out.println(listTitle);
 
+        toDoListDao.createList(listTitle);
 
         model.addAttribute("lists", toDoListDao.getToDoLists());
+        model.addAttribute("titles", toDoListDao.getTitles());
+        ArrayList<ArrayList<String>> fromDaoList = toDoListDao.getToDoLists();
+        return PathJsp + "toDoList.jsp";
+    }
+
+    @RequestMapping(value = {"/todo.html", "/index.html", "/"}, method = RequestMethod.POST, params={"newListItem","ListNum"})
+    public String EditTitle(@RequestParam("newListItem") String newListItem,
+                            @RequestParam("ListNum") int idList,
+                                Model model) {
+
+        System.out.println(newListItem);
+        System.out.println(idList);
+
+        toDoListDao.addItem(idList,newListItem);
+
+        model.addAttribute("lists", toDoListDao.getToDoLists());
+        model.addAttribute("titles", toDoListDao.getTitles());
+        ArrayList<ArrayList<String>> fromDaoList = toDoListDao.getToDoLists();
+        return PathJsp + "toDoList.jsp";
+    }
+
+    @RequestMapping(value = {"/todo.html", "/index.html", "/"}, method = RequestMethod.POST, params={"newListItem","ListNum","chDel","itemNum"})
+    public String EditTitle(@RequestParam("newListItem") String newListItem,
+                            @RequestParam("ListNum") int idList,
+                            @RequestParam("itemNum") int idItem,
+                            @RequestParam("chDel") String  chDel,
+                            Model model) {
+
+        System.out.println(newListItem);
+        System.out.println(idList);
+        System.out.println(idItem);
+        System.out.println(chDel);
+
+        if (chDel.equals("Del")){
+            toDoListDao.deleteItem(idList,idItem);
+        }
+
+        model.addAttribute("lists", toDoListDao.getToDoLists());
+        model.addAttribute("titles", toDoListDao.getTitles());
         ArrayList<ArrayList<String>> fromDaoList = toDoListDao.getToDoLists();
         return PathJsp + "toDoList.jsp";
     }

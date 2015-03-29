@@ -4,12 +4,6 @@ h1{
     color:rgb(53, 98, 181);
     text-align: center;
 }
-#bfnl{
-    width: 200px;
-    height: 30px;
-    margin: 0 auto;
-    display: block;
-}
 .list{
     width: 210px;
     height: 200px;
@@ -25,6 +19,8 @@ h1{
 .addChItem{
 float:right;
 display:inline-block;
+padding:1px;
+margin:1px;
 }
 .textNewItem{
     float:left;
@@ -37,7 +33,14 @@ margin:10px;
 }
 .itemList{
 display:block;
+padding:1px;
+margin:1px;
 }
 .itemList p{
 display:inline-block;
+padding:1px;
+margin:1px;
+}
+.newListTextBox{
+width:148px;
 }
