@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.mai.dep806.mvcapp.dao.MockToDoListDao;
 
-import java.util.ArrayList;
-
 /**
  * Контроллер для туду листа
  */
@@ -22,7 +20,6 @@ public class ToDoListController {
     public String ShowToDoLists(Model model) {
         model.addAttribute("lists", toDoListDao.getToDoLists());
         model.addAttribute("titles", toDoListDao.getTitles());
-        ArrayList<ArrayList<String>> fromDaoList = toDoListDao.getToDoLists();
         return PathJsp + "toDoList.jsp";
     }
 
@@ -36,7 +33,6 @@ public class ToDoListController {
 
         model.addAttribute("lists", toDoListDao.getToDoLists());
         model.addAttribute("titles", toDoListDao.getTitles());
-        ArrayList<ArrayList<String>> fromDaoList = toDoListDao.getToDoLists();
         return PathJsp + "toDoList.jsp";
     }
 
@@ -52,29 +48,31 @@ public class ToDoListController {
 
         model.addAttribute("lists", toDoListDao.getToDoLists());
         model.addAttribute("titles", toDoListDao.getTitles());
-        ArrayList<ArrayList<String>> fromDaoList = toDoListDao.getToDoLists();
         return PathJsp + "toDoList.jsp";
     }
 
-    @RequestMapping(value = {"/todo.html", "/index.html", "/"}, method = RequestMethod.POST, params={"newListItem","ListNum","chDel","itemNum"})
+    @RequestMapping(value = {"/todo.html", "/index.html", "/"}, method = RequestMethod.POST, params={"newListItem","ListNum","chDel"})
     public String EditTitle(@RequestParam("newListItem") String newListItem,
                             @RequestParam("ListNum") int idList,
-                            @RequestParam("itemNum") int idItem,
                             @RequestParam("chDel") String  chDel,
                             Model model) {
 
         System.out.println(newListItem);
         System.out.println(idList);
-        System.out.println(idItem);
-        System.out.println(chDel);
+        System.out.println(chDel.split(" ")[0]);
+        System.out.println(chDel.split(" ")[1]);
+        int idItem = Integer.parseInt(chDel.split(" ")[1]);
+        String action = chDel.split(" ")[0];
 
-        if (chDel.equals("Del")){
+
+        if (action.equals("Del")){
             toDoListDao.deleteItem(idList,idItem);
+        }else {
+            toDoListDao.changeItem(idList,idItem,newListItem);
         }
 
         model.addAttribute("lists", toDoListDao.getToDoLists());
         model.addAttribute("titles", toDoListDao.getTitles());
-        ArrayList<ArrayList<String>> fromDaoList = toDoListDao.getToDoLists();
         return PathJsp + "toDoList.jsp";
     }
 }

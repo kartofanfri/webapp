@@ -38,4 +38,9 @@ public class MockToDoListDao {
     public void deleteItem(int idList,int idItem){
         toDoLists.get(idList).remove(idItem);
     }
+
+    public void changeItem(int idList,int idItem,String str){
+        toDoLists.get(idList).remove(idItem);
+        toDoLists.get(idList).add(idItem,str);
+    }
 }

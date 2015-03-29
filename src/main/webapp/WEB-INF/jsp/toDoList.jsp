@@ -29,10 +29,9 @@
                         <c:forEach items="${list}" var="item" varStatus="loop">
 
                         <div class="itemList" class="buttonBlock">
-                            <input type="hidden" name="itemNum" value=${loop.index} />
                             <p>${loop.index+1}) ${item}</p>
-                            <input type="submit" name="chDel" class="addChItem" value="Del">
-                            <input type="submit" name="chDel" class="addChItem" value="Ch">
+                            <input type="submit" name="chDel" class="addChItem" value="Del ${loop.index}">
+                            <input type="submit" name="chDel" class="addChItem" value="Ch ${loop.index}">
                         </div>
 
                         </c:forEach>
