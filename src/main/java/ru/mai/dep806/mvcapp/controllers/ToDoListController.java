@@ -5,6 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.mai.dep806.mvcapp.dao.MockToDoListDao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Контроллер для туду листа
  */
@@ -17,8 +20,9 @@ public class ToDoListController {
     @RequestMapping(value = {"/todo.html", "/index.html", "/"})
     public String ShowToDoLists(Model model) {
         model.addAttribute("lists", toDoListDao.getToDoLists());
-        for (int i = 0, n = toDoListDao.getToDoLists().size(); i < n; i++)
-            for (String forStr : toDoListDao.getToDoLists().get(i).getList()) {
+        ArrayList<ArrayList<String>> fromDaoList = toDoListDao.getToDoLists();
+        for (List<String> forList : fromDaoList)
+            for (String forStr : forList) {
                 System.out.println(forStr);
             }
 
