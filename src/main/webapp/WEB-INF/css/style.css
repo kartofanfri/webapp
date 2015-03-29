@@ -22,14 +22,22 @@ h1{
 .list:hover{
     background-color: #D3D3D3;
 }
-.additem{
-
+.addChItem{
+float:right;
+display:inline-block;
 }
 .textNewItem{
     float:left;
 }
 #mainDiv{
+display:flex;
 border:solid 2px;
 padding:10px;
 margin:10px;
+}
+.itemList{
+display:block;
+}
+.itemList p{
+display:inline-block;
 }

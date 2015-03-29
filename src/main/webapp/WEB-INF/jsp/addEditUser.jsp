@@ -35,7 +35,6 @@
    <tr>
      <td colspan="2"><input type="submit" value="Сохранить"/></td>
    </tr>
-   <form:hidden path="id"/>
  </table>
 </form:form>
 </body>
