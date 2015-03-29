@@ -1,0 +1,35 @@
+h1{
+    margin: 0 auto;
+    display: block;
+    color:rgb(53, 98, 181);
+    text-align: center;
+}
+#bfnl{
+    width: 200px;
+    height: 30px;
+    margin: 0 auto;
+    display: block;
+}
+.list{
+    width: 210px;
+    height: 200px;
+    display: inline;
+    float: left;
+    margin: 10px;
+    padding: 10px;
+    background-color: #DCDCDC;
+}
+.list:hover{
+    background-color: #D3D3D3;
+}
+.additem{
+
+}
+.textNewItem{
+    float:left;
+}
+#mainDiv{
+border:solid 2px;
+padding:10px;
+margin:10px;
+}
