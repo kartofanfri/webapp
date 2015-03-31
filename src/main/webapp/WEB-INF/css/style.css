@@ -6,7 +6,6 @@ h1{
 }
 .list{
     width: 210px;
-    height: 200px;
     display: inline;
     float: left;
     margin: 10px;
@@ -41,6 +40,27 @@ display:inline-block;
 padding:1px;
 margin:1px;
 }
+.delListBut{
+display:none;
+position:absolute;
+float:right;
+width: 60px;
+height: 28px;
+padding: 5px;
+margin: 5px;
+}
+.addItem{
+float:right;
+display:inline-block;
+padding:1px;
+margin:1px;
+}
 .newListTextBox{
 width:147px;
+padding:1px;
+margin:1px;
+display:inline;
+}
+.list:hover .delListBut{
+display:inline;
 }

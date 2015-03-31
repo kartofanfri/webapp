@@ -25,7 +25,7 @@
                    <div class="list">
                         <input type="hidden" name="ListNum" value=${outerLoop.index}${loop.index} />
 
-                        <h1>${titles[outerLoop.index]}</h1>
+                        <h1 class="title">${titles[outerLoop.index]} <input type="submit" class="delListBut" name="delList" value="Del List"/></h1>
                         <c:forEach items="${list}" var="item" varStatus="loop">
 
                         <div class="itemList" class="buttonBlock">
@@ -37,7 +37,7 @@
                         </c:forEach>
 
                         <input type="text" class="newListTextBox" name="newListItem" value="New Item">
-                        <input type="submit" class="addChItem" value="Add Item">
+                        <input type="submit" class="addItem" value="Add Item">
                    </div>
            </form:form>
        </c:forEach>

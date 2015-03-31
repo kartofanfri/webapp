@@ -75,4 +75,18 @@ public class ToDoListController {
         model.addAttribute("titles", toDoListDao.getTitles());
         return PathJsp + "toDoList.jsp";
     }
+
+    @RequestMapping(value = {"/todo.html", "/index.html", "/"}, method = RequestMethod.POST, params={"ListNum","delList"})
+    public String EditTitle(@RequestParam("ListNum") int idList,
+                            @RequestParam("delList") String  chDel,
+                            Model model) {
+
+        System.out.println("Del: "+idList);
+
+        toDoListDao.deleteList(idList);
+
+        model.addAttribute("lists", toDoListDao.getToDoLists());
+        model.addAttribute("titles", toDoListDao.getTitles());
+        return PathJsp + "toDoList.jsp";
+    }
 }
